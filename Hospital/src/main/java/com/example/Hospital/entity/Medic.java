@@ -15,5 +15,4 @@ public class Medic {
     private String nume;
     private String prenume;
     private String specializare;
-
 }
