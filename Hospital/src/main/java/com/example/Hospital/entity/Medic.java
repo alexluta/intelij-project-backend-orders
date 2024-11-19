@@ -7,11 +7,13 @@ import lombok.Data;
 @Entity
 @Table(name = "medic")
 public class Medic {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String nume;
     private String prenume;
-    private String functie;
+    private String specializare;
+
 }
