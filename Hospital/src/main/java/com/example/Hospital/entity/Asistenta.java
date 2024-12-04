@@ -16,4 +16,5 @@ public class Asistenta {
     @ManyToOne
     @JoinColumn(name = "sectie_id")
     private Sectie Sectie;
+
 }

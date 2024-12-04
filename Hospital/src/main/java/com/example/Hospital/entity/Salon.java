@@ -15,8 +15,6 @@ public class Salon {
     private int numarSalon;
     private int capacitate;
 
-
-
     @OneToMany(mappedBy = "salon")
     private List<Pacient> pacienti;
 
