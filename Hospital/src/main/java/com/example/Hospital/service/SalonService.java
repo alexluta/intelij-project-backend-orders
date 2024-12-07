@@ -5,9 +5,9 @@ import com.example.Hospital.entity.Salon;
 import java.util.List;
 
 public interface SalonService {
-    List<Salon> Salon();
-    Salon getSalonById(int id);
+    List<Salon> getAllSalon();
+    Salon getSalonById(Long id);
     Salon saveSalon(Salon salon);
-    void deleteSalon(int id);
-    void updateSalon(Salon salon);
+    void deleteSalon(Long id);
+    void updateSalon(Long id, Salon salon);
 }

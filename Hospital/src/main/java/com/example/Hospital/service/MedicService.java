@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface MedicService {
     List<Medic> getAllMedic();
-    Medic getMedicById(int id);
+    Medic getMedicById(Long id);
     Medic saveMedic(Medic medic);
-    void deleteMedic(int id);
-    void updateMedic(Medic medic);
+    void deleteMedic(Long id);
+    void updateMedic(Long id, Medic medic);
 }

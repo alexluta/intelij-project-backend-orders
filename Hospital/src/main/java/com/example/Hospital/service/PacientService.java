@@ -5,9 +5,9 @@ import com.example.Hospital.entity.Pacient;
 import java.util.List;
 
 public interface PacientService {
-    List<Pacient> Pacient();
-    Pacient getPacientById(int id);
+    List<Pacient> getAllPacient();
+    Pacient getPacientById(Long id);
     Pacient savePacient(Pacient pacient);
-    void deletePacient(int id);
-    void updatePacient(Pacient pacient);
+    void deletePacient(Long id);
+    void updatePacient(Long id, Pacient pacient);
 }

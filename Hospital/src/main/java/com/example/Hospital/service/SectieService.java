@@ -5,9 +5,9 @@ import com.example.Hospital.entity.Sectie;
 import java.util.List;
 
 public interface SectieService {
-    List<Sectie> Sectie();
-    Sectie getSalonById(int id);
+    List<Sectie> getAllSectie();
+    Sectie getSectieById(Long id);
     Sectie saveSectie(Sectie sectie);
-    void deleteSectie(int id);
-    void updateSectie(Sectie sectie);
+    void deleteSectie(Long id);
+    void updateSectie(Long id, Sectie sectie);
 }
