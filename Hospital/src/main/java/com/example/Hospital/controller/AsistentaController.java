@@ -6,9 +6,7 @@ import org.hibernate.internal.build.AllowNonPortable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class AsistentaController {
@@ -28,5 +26,27 @@ public class AsistentaController {
         Asistenta asistenta1 = asistentaService.saveAsistenta(asistenta);
         return ResponseEntity.status(HttpStatus.CREATED).body(asistenta1);
     }
+
+
+    @DeleteMapping("/deleteAsistenta/{id}")
+    public ResponseEntity<Void> deleteAsistenta(@PathVariable Long id) {
+        asistentaService.deleteAsistenta(id);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+
+    @PutMapping("/modifyAsistenta/{id}")
+    public ResponseEntity<Void> updateAsistenta(@PathVariable Long id,@RequestBody Asistenta asistenta) {
+        asistentaService.updateAsistenta(id,asistenta);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+
+    @GetMapping("/selectAsistenta/{id}")
+    public ResponseEntity<Asistenta> getAsistenta(@PathVariable Long id) {
+        Asistenta asistenta = asistentaService.getAsistentaById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(asistenta);
+    }
+
 
 }

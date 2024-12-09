@@ -54,9 +54,10 @@ public class MedicServiceImpl implements MedicService {
         if(!medicOptional.isPresent()) {
             throw new RuntimeException("No such Medic");
         }else {
-            medic.setNume(medic.getNume());
-            medic.setPrenume(medic.getPrenume());
-            medicRepository.save(medic);
+            Medic medic1 = medicOptional.get();
+            medic1.setNume(medic.getNume());
+            medic1.setPrenume(medic.getPrenume());
+            medicRepository.save(medic1);
         }
 
     }

@@ -15,4 +15,8 @@ public class Medic {
     private String nume;
     private String prenume;
     private String specializare;
+
+    @ManyToOne
+    @JoinColumn(name = "sectie_id")
+    private Sectie sectie;
 }

@@ -10,6 +10,29 @@ public class HospitalApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HospitalApplication.class, args);
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		// proiectul de spring se imparte in 4 :
 		// Entity - 1:1 cu baza de date;
@@ -43,6 +66,4 @@ public class HospitalApplication {
 
 
 
-	}
 
-}

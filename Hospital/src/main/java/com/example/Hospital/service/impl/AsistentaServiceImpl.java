@@ -27,11 +27,10 @@ public class AsistentaServiceImpl implements AsistentaService {
 
     @Override
     public Asistenta getAsistentaById(Long id) {
-        Optional<Asistenta> asistentaOptional = asistentaRepository.findById(id);
-        if (asistentaOptional.isPresent()) {
-           return asistentaOptional.get();
-        }
-        return asistentaOptional.orElseThrow(()-> new RuntimeException("No such Asistenta"));
+        Optional<Asistenta> asistenta = asistentaRepository.findById(id);
+
+         return asistenta.get();
+
     }
 
     @Override
@@ -54,9 +53,10 @@ public class AsistentaServiceImpl implements AsistentaService {
             if(!asistentaOptional.isPresent()) {
                 throw new RuntimeException("No such Asistenta");
             }else {
-                asistenta.setNume(asistenta.getNume());
-                asistenta.setPrenume(asistenta.getPrenume());
-                asistentaRepository.save(asistenta);
+                Asistenta asistenta1 = asistentaOptional.get();
+                asistenta1.setNume(asistenta.getNume());
+                asistenta1.setPrenume(asistenta.getPrenume());
+                asistentaRepository.save(asistenta1);
             }
 
     }
