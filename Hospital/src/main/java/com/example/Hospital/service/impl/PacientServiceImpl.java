@@ -53,9 +53,10 @@ public class PacientServiceImpl implements PacientService {
         if(!pacientOptional.isPresent()) {
             throw new RuntimeException("No such Pacient");
         }else {
-            pacient.setNume(pacient.getNume());
-            pacient.setPrenume(pacient.getPrenume());
-            pacientRepository.save(pacient);
+            Pacient pacient1 = pacientOptional.get();
+            pacient1.setNume(pacient.getNume());
+            pacient1.setPrenume(pacient.getPrenume());
+            pacientRepository.save(pacient1);
         }
     }
 }

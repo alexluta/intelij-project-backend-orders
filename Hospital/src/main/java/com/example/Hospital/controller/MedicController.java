@@ -1,6 +1,5 @@
 package com.example.Hospital.controller;
 
-import com.example.Hospital.entity.Asistenta;
 import com.example.Hospital.entity.Medic;
 import com.example.Hospital.service.MedicService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +23,7 @@ public class MedicController {
         return ResponseEntity.status(HttpStatus.CREATED).body(medic);
     }
 
+
     @DeleteMapping("/deleteMedic/{id}")
     public ResponseEntity<Void> deleteMedic(@PathVariable Long id) {
         medicService.deleteMedic(id);
@@ -39,7 +39,7 @@ public class MedicController {
 
 
     @GetMapping("/selectMedic/{id}")
-    public ResponseEntity<Medic> getAMedic(@PathVariable Long id) {
+    public ResponseEntity<Medic> getMedic(@PathVariable Long id) {
         Medic medic = medicService.getMedicById(id);
         return ResponseEntity.status(HttpStatus.OK).body(medic);
     }

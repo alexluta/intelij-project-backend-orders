@@ -53,9 +53,10 @@ public class SalonServiceImpl implements SalonService {
         if(!salonOptional.isPresent()) {
             throw new RuntimeException("No such Salon");
         }else {
-            salon.setNumarSalon(salon.getNumarSalon());
-            salon.setCapacitate(salon.getCapacitate());
-            salonRepository.save(salon);
+            Salon salon1 = salonOptional.get();
+            salon1.setNumarSalon(salon.getNumarSalon());
+            salon1.setCapacitate(salon.getCapacitate());
+            salonRepository.save(salon1);
         }
     }
 }

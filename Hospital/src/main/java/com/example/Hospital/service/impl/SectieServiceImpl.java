@@ -53,8 +53,9 @@ public class SectieServiceImpl implements SectieService {
         if(!sectieOptional.isPresent()) {
             throw new RuntimeException("No such Sectie");
         }else {
-            sectie.setDenumire(sectie.getDenumire());
-            sectieRepository.save(sectie);
+            Sectie sectie1 = sectieOptional.get();
+            sectie1.setDenumire(sectie.getDenumire());
+            sectieRepository.save(sectie1);
         }
     }
 

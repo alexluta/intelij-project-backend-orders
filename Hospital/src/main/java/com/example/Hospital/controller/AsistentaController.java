@@ -48,5 +48,4 @@ public class AsistentaController {
         return ResponseEntity.status(HttpStatus.OK).body(asistenta);
     }
 
-
 }

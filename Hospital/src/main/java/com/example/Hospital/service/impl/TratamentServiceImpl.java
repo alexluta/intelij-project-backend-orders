@@ -55,10 +55,11 @@ public class TratamentServiceImpl implements TratamentService {
         if(!tratamentOptional.isPresent()) {
             throw new RuntimeException("No such Tratament");
         }else {
-            tratament.setDenumire(tratament.getDenumire());
-            tratament.setDescriere(tratament.getDescriere());
-            tratament.setDurata(tratament.getDurata());
-            tratamentRepository.save(tratament);
+            Tratament tratament1 = tratamentOptional.get();
+            tratament1.setDenumire(tratament.getDenumire());
+            tratament1.setDescriere(tratament.getDescriere());
+            tratament1.setDurata(tratament.getDurata());
+            tratamentRepository.save(tratament1);
         }
 
     }
