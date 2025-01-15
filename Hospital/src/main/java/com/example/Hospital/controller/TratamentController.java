@@ -33,7 +33,7 @@ public class TratamentController {
     }
 
     @GetMapping("/selectTratament/{id}")
-    public ResponseEntity<Tratament> getATratament(@PathVariable Long id) {
+    public ResponseEntity<Tratament> getTratament(@PathVariable Long id) {
         Tratament tratament = tratamentServiceImpl.getTratamentById(id);
         return ResponseEntity.status(HttpStatus.OK).body(tratament);
     }
