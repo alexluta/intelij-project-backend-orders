@@ -1,39 +1,38 @@
 package com.example.Hospital.service.impl;
 
+import com.example.Hospital.entity.Order;
 import com.example.Hospital.entity.User;
+import com.example.Hospital.repository.OrderRepository;
 import com.example.Hospital.repository.UserRepository;
 import com.example.Hospital.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
-    @Autowired
     private UserRepository userRepository;
+
     @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    public User registerUser(User user) {
-
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
     @Override
-    public User findByEmail(String email) {
-        Optional<User> userOptional = Optional.ofNullable(userRepository.findByEmail(email));
-        User user1 = null;
-        if(userOptional.isPresent()) {
-             user1 = userOptional.get();
-        }else {
-            throw new RuntimeException("Emailul nu exista.");
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
+            return userOptional.get();
         }
-        return user1;
+        return userOptional.orElseThrow(()-> new RuntimeException("No such User"));
     }
 
     @Override
@@ -42,37 +41,24 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getUserById(Long id) {
-        Optional<User> optionalUser = userRepository.findById(id);
-        if(!optionalUser.isPresent()){
-            throw new RuntimeException("Nu exista id-ul.");
-        }
-        return optionalUser.get();
-    }
-
-    @Override
     public void updateUser(Long id, User user) {
-            Optional<User> optionalUser = userRepository.findById(id);
-            if(!optionalUser.isPresent()){
-                throw new RuntimeException("Nu exista userul.");
-            }
-            User user1 = optionalUser.get();
+        Optional<User> userOptional = userRepository.findById(id);
+        if(!userOptional.isPresent()) {
+            throw new RuntimeException("No such Medic");
+        }else {
+            User user1 = userOptional.get();
+            user1.setName(user.getName());
             user1.setEmail(user.getEmail());
-            user1.setPassword(user.getPassword());
             userRepository.save(user1);
+        }
     }
 
     @Override
     public void deleteUser(Long id) {
-        Optional<User> optionalUser = userRepository.findById(id);
-        if(!optionalUser.isPresent()){
-            throw new RuntimeException("Nu exista userul.");
+        Optional<User> userOptional = userRepository.findById(id);
+        if(!userOptional.isPresent()) {
+            throw new RuntimeException("No such User");
         }
         userRepository.deleteById(id);
-    }
-
-    @Override
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
     }
 }

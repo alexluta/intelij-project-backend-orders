@@ -1,6 +1,6 @@
 package com.example.Hospital.controller;
 
-import com.example.Hospital.entity.Tratament;
+import com.example.Hospital.entity.Order;
 import com.example.Hospital.entity.User;
 import com.example.Hospital.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,18 +14,24 @@ public class UserController {
     private UserServiceImpl userServiceImpl;
 
     @Autowired
-    public UserController(UserServiceImpl userServiceImpl) {
-      this.userServiceImpl = userServiceImpl;
+    public UserController(UserServiceImpl userServiceImpl){
+        this.userServiceImpl=userServiceImpl;
     }
 
-    public ResponseEntity<User> createUser(@RequestBody User user){
-        User savedUser = userServiceImpl.saveUser(user);
+    @PostMapping("/saveUser")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User user1 = userServiceImpl.saveUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
+
     @DeleteMapping("/deleteUser/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        userServiceImpl.deleteUser(id);
-        return ResponseEntity.status(HttpStatus.OK).build();
+        try {
+            userServiceImpl.deleteUser(id);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
     }
 
     @PutMapping("/modifyUser/{id}")
@@ -39,6 +45,5 @@ public class UserController {
         User user = userServiceImpl.getUserById(id);
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
-
 
 }
