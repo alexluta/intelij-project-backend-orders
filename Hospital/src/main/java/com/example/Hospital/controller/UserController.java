@@ -22,7 +22,7 @@ public class UserController {
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User user1 = userServiceImpl.saveUser(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
-    }
+    }cmd
 
     @DeleteMapping("/deleteUser/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
